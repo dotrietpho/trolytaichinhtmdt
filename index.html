@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trợ lý tài chính cho nhà bán hàng TMĐT</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--tx:#172033;--mu:#54607a;--bd:#d5dbe6;--ac:#1d4ed8;--onac:#fff;--ok:#0f7a4f;--bad:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--card:#1b2029;--tx:#eceff6;--mu:#a4aec2;--bd:#333b4a;--ac:#8fb0ff;--onac:#0c1630;--ok:#5ad6a1;--bad:#ff9d94;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151b;--card:#1b2029;--tx:#eceff6;--mu:#a4aec2;--bd:#333b4a;--ac:#8fb0ff;--onac:#0c1630;--ok:#5ad6a1;--bad:#ff9d94;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--card)}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--bd)}
+#bar div{max-width:1100px;margin:0 auto;padding:8px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+#bar strong{font-size:14px}#sb{margin:0}#sb b{font-size:18px}#sb span{margin-left:10px;color:var(--mu);font-size:13px}
+.w{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:21px;margin:0 0 4px}h2{font-size:16px;margin:0 0 10px}h3{font-size:15px;margin:12px 0 6px}
+.sub{color:var(--mu);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:14px}
+.main{display:grid;gap:14px}
+@media(min-width:860px){.main{grid-template-columns:370px 1fr;align-items:start}.res{position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px);max-height:calc(100vh - 72px);overflow:auto}}
+details{border-top:1px solid var(--bd);padding:8px 0}summary{cursor:pointer;font-weight:600}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px}
+label{display:block;font-size:13px;color:var(--mu);margin-bottom:2px}
+.w2{position:relative}.w2 em{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--mu);font-size:13px}
+input{width:100%;padding:9px 38px 9px 9px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+input[aria-invalid=true]{border-color:var(--bad)}
+input:focus-visible,button:focus-visible,.q:focus-visible,summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.seg,.tabs,.act{display:flex;gap:6px;flex-wrap:wrap}.tabs{margin-bottom:12px}.act{margin:10px 0}
+.seg button,.tabs button,.act button{padding:8px 12px;border:1px solid var(--bd);border-radius:20px;background:var(--card);color:var(--tx)}
+.seg button[aria-pressed=true],.tabs button[aria-selected=true]{background:var(--ac);border-color:var(--ac);color:var(--onac);font-weight:600}
+.note{font-size:13px;color:var(--mu);margin:6px 0}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.vd{border-radius:10px;padding:12px;border:2px solid var(--bd);margin-bottom:10px}.vd.ok{border-color:var(--ok)}.vd.bad{border-color:var(--bad)}.vd b{font-size:24px;display:block}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+.k div{border:1px solid var(--bd);border-radius:10px;padding:10px}.k b{display:block;font-size:18px}.k span{font-size:13px;color:var(--mu)}
+.ov{overflow-x:auto}table{border-collapse:collapse;width:100%}td,th{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:right;font-size:14px}th:first-child,td:first-child{text-align:left}
+tr.t td{font-weight:700}
+.mb{display:block;height:8px;border-radius:4px;background:var(--mu);opacity:.55}
+.q{display:inline-block;position:relative;width:16px;height:16px;line-height:16px;text-align:center;border-radius:50%;background:var(--bd);color:var(--tx);font-size:11px;font-style:normal;cursor:help;margin-left:4px}
+.q:hover::after,.q:focus::after{content:attr(data-t);position:absolute;z-index:40;left:0;bottom:130%;width:210px;padding:8px;border-radius:8px;background:var(--tx);color:var(--bg);font-size:13px;line-height:1.4;text-align:left;font-weight:400}
+.fn{margin:6px 0}.fn div{height:34px;border-radius:6px;background:var(--ac);color:var(--onac);display:flex;align-items:center;padding:0 10px;font-size:13px;white-space:nowrap;min-width:max-content}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.best{border:2px solid var(--ok)!important}
+.warn{background:var(--bg);border:1px solid var(--bad);border-radius:8px;padding:8px;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<div id="bar"><div><strong>Trợ lý TMĐT</strong><p id="sb" aria-live="polite"></p></div></div>
+<div class="w">
+<h1>Trợ lý tài chính cho nhà bán hàng TMĐT</h1>
+<p class="sub">Biết lãi hay lỗ trên từng đơn, cần bao nhiêu đơn để hòa vốn, nên bán giá bao nhiêu và sàn nào có lợi hơn. Dữ liệu mẫu: giấy in nhiệt bán trên Shopee, bạn có thể sửa mọi số.</p>
+<div class="main">
+<div class="card">
+<h2>Thông số</h2>
+<div class="seg" id="pf" role="group" aria-label="Chọn sàn"></div>
+<p class="note" id="pst"></p>
+<div id="grp"></div>
+<div class="act"><button id="cp">Sao chép kết quả</button><button id="rs">Đặt lại</button></div>
+<p class="note" id="msg" aria-live="polite"></p>
+<div id="wn"></div>
+</div>
+<div class="res card">
+<div class="tabs" id="tabs" role="tablist"></div>
+<div id="p0" role="tabpanel" aria-labelledby="t0"></div>
+<div id="p1" role="tabpanel" aria-labelledby="t1" hidden></div>
+<div id="p2" role="tabpanel" aria-labelledby="t2" hidden></div>
+<div id="p3" role="tabpanel" aria-labelledby="t3" hidden></div>
+<div id="p4" role="tabpanel" aria-labelledby="t4" hidden></div>
+</div>
+</div>
+<details class="card"><summary>Nguồn và lưu ý về mức phí (cập nhật 11/2026)</summary>
+<p class="note"><b>Shopee:</b> phí xử lý giao dịch (tên cũ: phí thanh toán) 6% từ 01/05/2026, tính trên giá sản phẩm cộng phí vận chuyển người mua trả, trừ khuyến mãi người bán; phí cố định theo ngành hàng và loại shop; phí hạ tầng 3.000đ/đơn; Voucher Xtra 5,5% (tối đa 50.000đ/sản phẩm). Nguồn: Kênh Người Bán Shopee, Báo Dân Việt, GHN.</p>
+<p class="note"><b>TikTok Shop:</b> phí giao dịch 6% từ 09/05/2026; hoa hồng nền tảng theo ngành (mặc định shop thường 12,5%); phí xử lý đơn 3.000đ/đơn từ 27/10/2025; affiliate do shop tự đặt. Nguồn: Học viện TikTok Shop và các bài tổng hợp (Height Media, GHN).</p>
+<p class="note"><b>Thuế:</b> từ 01/07/2025 sàn khấu trừ 1% GTGT + 0,5% TNCN trên doanh thu hàng hóa của cá nhân cư trú. Từ 01/01/2026, hộ kinh doanh doanh thu từ 500 triệu đồng/năm trở xuống không phải nộp GTGT và TNCN (phần đã khấu trừ có thể làm thủ tục hoàn); trên 500 triệu thì nộp theo tỷ lệ, TNCN được trừ 500 triệu trước khi nhân thuế suất. Nguồn: VnExpress, Thư viện Pháp luật. Hãy xác nhận với cơ quan thuế hoặc kế toán.</p>
+<p class="note">Biểu phí thay đổi thường xuyên: đối chiếu trong Kênh Người Bán hoặc Seller Center trước khi dùng số liệu cho báo cáo.</p></details>
+</div>
+<script>
+var G=["Hàng hóa","Phí sàn","Thuế sàn khấu trừ","Vận hành"],
+F=[["price","Giá bán niêm yết",45000,"đ",0],["cost","Giá vốn / đơn",30000,"đ",0],["voucher","Giảm giá, voucher shop chịu",2000,"đ",0],
+["bship","Phí ship người mua trả",0,"đ",1,"Dùng làm cơ sở tính phí xử lý giao dịch"],
+["f1","Phí cố định / hoa hồng ngành",13,"%",1,"Shopee gọi là phí cố định, TikTok gọi là hoa hồng nền tảng; thay đổi theo ngành hàng"],
+["f2","Phí xử lý giao dịch",6,"%",1],["infra","Phí hạ tầng / xử lý đơn",3000,"đ",1],
+["xtra","Voucher Xtra / Extra (nếu có)",0,"%",1,"Tối đa 50.000đ mỗi sản phẩm"],["aff","Hoa hồng affiliate (nếu có)",0,"%",1],
+["vat","Thuế GTGT",1,"%",2,"Doanh thu hộ kinh doanh từ 500 triệu/năm trở xuống được miễn: khi đó đặt về 0"],["pit","Thuế TNCN",0.5,"%",2],
+["ship","Phí vận chuyển shop chịu",3000,"đ",3],["pack","Chi phí đóng gói",1500,"đ",3],
+["ads","Quảng cáo / đơn (CPA)",3000,"đ",3,"CPA: chi phí quảng cáo để có một đơn hàng"],
+["ret","Tỷ lệ hoàn / hủy",3,"%",3,"Dự phòng: ship hai chiều và đóng gói của đơn hoàn"],
+["fixed","Chi phí cố định / tháng",3000000,"đ",3,"Lương, mặt bằng, phần mềm..."]],
+T=["Lợi nhuận / đơn","Hòa vốn và quảng cáo","Kịch bản giá","Phễu chuyển đổi","So sánh sàn"],
+PF=[["Shopee",{f1:13,f2:6,infra:3000,xtra:0}],["TikTok Shop",{f1:12.5,f2:6,infra:3000,xtra:0}],["Tùy chỉnh"]],FEE=["f1","f2","infra","xtra"],pf=0,cur=0;
+function $(i){return document.getElementById(i)}
+function fmt(x){return Number(x).toLocaleString("vi-VN",{maximumFractionDigits:2})}
+function pv(r){r=String(r).trim();if(/^\d{1,3}(\.\d{3})+$/.test(r))r=r.replace(/\./g,"");else r=r.replace(",",".");return r===""?NaN:Number(r)}
+function v(i){var x=pv($(i).value);return isNaN(x)?0:x}
+function n(x){return Math.round(x).toLocaleString("vi-VN")}
+function pc(x){return (x*100).toFixed(1).replace(".",",")+"%"}
+function cl(x){return x>=0?"ok":"bad"}
+function I(id,l,d,u,t){return '<div><label for="'+id+'">'+l+(t?'<i class="q" tabindex="0" data-t="'+t+'">?</i>':"")+'</label><div class="w2"><input class="in" id="'+id+'" inputmode="decimal" autocomplete="off" value="'+fmt(d)+'" data-d="'+d+'"><em>'+u+'</em></div></div>'}
+function K(a,b,c,t){return '<div><span>'+a+(t?'<i class="q" tabindex="0" data-t="'+t+'">?</i>':"")+'</span><b class="'+(c||"")+'">'+b+'</b></div>'}
+function g(k,o){return o&&k in o?o[k]:v(k)}
+function calc(p,o){var d=p-v("voucher"),a=d*g("f1",o)/100,b=(d+v("bship"))*g("f2",o)/100,e=g("infra",o),x=Math.min(d*g("xtra",o)/100,5e4),y=d*g("aff",o)/100,t=d*(v("vat")+v("pit"))/100,r=v("ret")/100*(v("ship")*2+v("pack")),s=0,
+it=[["Giá vốn",v("cost")],["Phí cố định / hoa hồng",a],["Phí xử lý giao dịch",b],["Phí hạ tầng / xử lý đơn",e],["Voucher Xtra / Extra",x],["Hoa hồng affiliate",y],["Vận chuyển shop chịu",v("ship")],["Đóng gói",v("pack")],["Quảng cáo",v("ads")],["Thuế GTGT + TNCN",t],["Dự phòng hoàn / hủy",r]];
+it.forEach(function(z){s+=z[1]});var pr=d-s;return{d:d,it:it,fee:a+b+e+x+y,tax:t,pr:pr,m0:pr+v("ads")}}
+function rev(m){var f=function(p){return calc(p).pr-m*p},lo=0,hi=1e8,i,mid;if(f(hi)<=0)return null;for(i=0;i<60;i++){mid=(lo+hi)/2;if(f(mid)>0)hi=mid;else lo=mid}return Math.ceil(hi/100)*100}
+function row(l,a,p,c,t){return '<tr'+(t?' class="t"':"")+'><td>'+l+'</td><td class="'+(c||"")+'">'+n(a)+'đ</td><td>'+pc(a/(p||1))+'</td><td style="width:80px"><span class="mb" style="width:'+Math.min(100,Math.max(0,a/(p||1)*100))+'%"></span></td></tr>'}
+function chk(){var w=[];document.querySelectorAll("input.in").forEach(function(e){var x=pv(e.value),u=e.nextSibling.textContent,b=isNaN(x)||x<0||(u=="%"&&x>100),lb=document.querySelector('label[for="'+e.id+'"]');e.setAttribute("aria-invalid",b);if(b)w.push(lb.firstChild.textContent)});
+$("wn").innerHTML=w.length?'<div class="warn">Kiểm tra lại: '+w.join(", ")+'. Ô trống hoặc sai đang được tính là 0.</div>':""}
+function o0(c,m,p){var ok=c.pr>=0,al=[],h;
+if(!ok)al.push("Đơn đang lỗ.");else if(m<.1)al.push("Biên lãi dưới 10%: dễ lỗ khi tăng voucher hoặc quảng cáo.");
+if(v("ads")>c.m0)al.push("Quảng cáo ("+n(v("ads"))+"đ/đơn) vượt mức tối đa chịu được ("+n(Math.max(0,c.m0))+"đ).");
+if(c.pr<=0&&v("fixed")>0)al.push("Không thể hòa vốn với chi phí cố định hiện tại.");
+h='<div class="vd '+(ok?"ok":"bad")+'"><b>'+(ok?"▲ Lãi ":"▼ Lỗ ")+n(Math.abs(c.pr))+'đ mỗi đơn</b>Biên lợi nhuận '+pc(m)+'. '+(ok?(m<.1?"Có lãi nhưng biên mỏng.":"Biên lãi ổn."):"Hãy tăng giá, giảm voucher hoặc giảm chi phí quảng cáo.")+'</div>';
+if(al.length)h+='<ul class="note">'+al.map(function(x){return"<li>"+x+"</li>"}).join("")+"</ul>";
+h+='<div class="ov"><table><tr><th>Khoản</th><th>Số tiền</th><th>% giá</th><th></th></tr>'+row("Giá bán niêm yết",p,p)+row("− Giảm giá, voucher shop",v("voucher"),p);
+c.it.forEach(function(z){if(z[1])h+=row("− "+z[0],z[1],p)});
+$("o0").innerHTML=h+row("= Lãi mỗi đơn",c.pr,p,cl(c.pr),1)+"</table></div>";
+var tm=v("tm")/100,rp=rev(tm);$("ro").innerHTML=rp?"Để đạt biên "+pc(tm)+", giá bán cần khoảng <b>"+n(rp)+"đ</b> (lãi "+n(calc(rp).pr)+"đ/đơn).":"Không đạt được biên này với cấu trúc phí hiện tại."}
+function o1(c,p){var fx=v("fixed"),be=c.pr>0?Math.ceil(fx/c.pr):null,rb=c.m0>0?p/c.m0:null,rc=v("ads")>0?p/v("ads"):null;
+$("o1").innerHTML='<div class="k">'+K("Đơn hòa vốn / tháng",be!==null?n(be)+" đơn":"Không đạt",be!==null?"":"bad","Số đơn mỗi tháng để lãi đủ bù chi phí cố định")+K("Doanh thu hòa vốn",be!==null?n(be*p)+"đ":"-")+K("CPA tối đa",n(Math.max(0,c.m0))+"đ","","Lãi trước quảng cáo của một đơn; chi quảng cáo cao hơn mức này là lỗ")+K("ROAS hòa vốn",rb?rb.toFixed(2):"-","","ROAS = doanh thu / chi phí quảng cáo")+K("ROAS hiện tại",rc?rc.toFixed(2):"-",rb&&rc?(rc>=rb?"ok":"bad"):"")+'</div><p class="note">'+(rb&&rc?(rc>=rb?"ROAS hiện tại đạt mức hòa vốn: quảng cáo đang có lãi.":"ROAS hiện tại thấp hơn mức hòa vốn: quảng cáo đang ăn vào lợi nhuận."):"Nhập chi phí quảng cáo để so sánh ROAS.")+"</p>"}
+function o2(){var b=-1e18,bi=0,i,c,x;for(i=0;i<3;i++){c=calc(v("sp"+i));x=c.pr*v("so"+i)-v("fixed");$("sr"+i).innerHTML='<p>Lãi / đơn: <b class="'+cl(c.pr)+'">'+n(c.pr)+'đ</b></p><p>Lãi ròng / tháng: <b class="'+cl(x)+'">'+n(x)+"đ</b></p>";if(x>b){b=x;bi=i}}
+for(i=0;i<3;i++){$("sc"+i).className="card"+(i==bi?" best":"");$("bs"+i).textContent=i==bi?"· Tốt nhất":""}
+$("sw").textContent="Kịch bản tốt nhất: số "+(bi+1)+" (lãi ròng "+n(b)+"đ/tháng). Hãy so sánh tổng lãi, không chỉ số đơn."}
+function o3(){var a=v("fv"),cr=v("fc"),pr=v("fp"),c=a*cr/100,o=c*pr/100,l=o*calc(v("price")).pr-v("fixed"),t=[],bar=function(w,x){return '<div class="fn"><div style="width:'+w+'%">'+x+"</div></div>"};
+if(cr<v("th1"))t.push("Tầng lượt xem sang giỏ hàng thấp hơn ngưỡng bạn đặt: cải thiện ảnh, tiêu đề và giá hiển thị.");
+if(pr<v("th2"))t.push("Tầng giỏ hàng sang đơn thấp hơn ngưỡng: thử voucher, miễn phí vận chuyển, đánh giá sản phẩm.");
+if(!t.length)t.push("Cả hai tầng đạt ngưỡng bạn đặt: ưu tiên tăng lượt xem.");
+$("o3").innerHTML=bar(100,"Lượt xem: "+n(a))+bar(70,"Giỏ hàng: "+n(c)+" · rớt "+(100-cr).toFixed(1).replace(".",",")+"% so với lượt xem")+bar(45,"Đơn hàng: "+n(o)+" · rớt "+(100-pr).toFixed(1).replace(".",",")+"% so với giỏ hàng")+'<div class="k">'+K("Doanh thu / tháng",n(o*v("price"))+"đ")+K("Lãi ròng / tháng",n(l)+"đ",cl(l))+'</div><p class="note">'+t.join(" ")+"</p>"}
+function o4(){var p=v("price"),q=v("co"),fx=v("fixed"),S=calc(p,{f1:v("cs"),f2:6,infra:3000,xtra:0,aff:0}),X=calc(p,{f1:v("ct"),f2:6,infra:3000,xtra:0,aff:v("ca")}),d=function(x){return n(x)+"đ"},e=function(x){return '<span class="'+cl(x)+'">'+d(x)+"</span>"},ms=S.pr*q-fx,mt=X.pr*q-fx;
+$("o4").innerHTML='<div class="ov"><table><tr><th></th><th>Shopee</th><th>TikTok Shop</th></tr><tr><td>Tổng phí sàn</td><td>'+d(S.fee)+"</td><td>"+d(X.fee)+"</td></tr><tr><td>Thuế</td><td>"+d(S.tax)+"</td><td>"+d(X.tax)+"</td></tr><tr><td>Lãi / đơn</td><td>"+e(S.pr)+"</td><td>"+e(X.pr)+"</td></tr><tr><td>Biên lợi nhuận</td><td>"+pc(p?S.pr/p:0)+"</td><td>"+pc(p?X.pr/p:0)+"</td></tr><tr class=\"t\"><td>Lãi ròng / tháng</td><td>"+e(ms)+"</td><td>"+e(mt)+"</td></tr></table></div><p class=\"note\">"+(ms==mt?"Hai sàn cho kết quả bằng nhau.":"Với thông số này, "+(ms>mt?"Shopee":"TikTok Shop")+" có lợi hơn "+d(Math.abs(ms-mt))+"/tháng.")+" Hai sàn dùng phí xử lý 6% và phí hạ tầng 3.000đ; các khoản còn lại lấy từ thông số bên trái.</p>"}
+function render(){chk();var p=v("price"),c=calc(p),m=p?c.pr/p:0,ok=c.pr>=0;
+$("sb").innerHTML='<b class="'+(ok?"ok":"bad")+'">'+(ok?"▲ Lãi ":"▼ Lỗ ")+n(Math.abs(c.pr))+"đ / đơn</b><span>Biên "+pc(m)+"</span>";
+o0(c,m,p);o1(c,p);o2();o3();o4();save()}
+function save(){try{var o={_pf:pf};document.querySelectorAll("input.in").forEach(function(e){o[e.id]=e.value});localStorage.setItem("tl-v2",JSON.stringify(o))}catch(x){}}
+function load(){try{var o=JSON.parse(localStorage.getItem("tl-v2")||"null");if(o){document.querySelectorAll("input.in").forEach(function(e){if(o[e.id]!=null)e.value=o[e.id]});if(o._pf!=null)pf=o._pf}}catch(x){}}
+function pst(){$("pf").innerHTML=PF.map(function(p,i){return '<button data-p="'+i+'" aria-pressed="'+(i==pf)+'">'+p[0]+"</button>"}).join("");
+$("pst").textContent=pf<2?"Đã nạp mức phí mặc định "+PF[pf][0]+". Phí cố định/hoa hồng phụ thuộc ngành hàng, hãy chỉnh đúng với shop của bạn.":"Bạn đang dùng mức phí tự nhập."}
+function show(i){cur=i;T.forEach(function(_,j){$("p"+j).hidden=j!=i;var b=$("tabs").children[j];b.setAttribute("aria-selected",j==i);b.tabIndex=j==i?0:-1})}
+var gh="";G.forEach(function(t,gi){gh+="<details"+(gi==1||gi==2?"":" open")+"><summary>"+t+'</summary><div class="g">'+F.filter(function(f){return f[4]==gi}).map(function(f){return I(f[0],f[1],f[2],f[3],f[5])}).join("")+"</div></details>"});$("grp").innerHTML=gh;
+$("tabs").innerHTML=T.map(function(t,i){return '<button role="tab" id="t'+i+'" aria-controls="p'+i+'" data-i="'+i+'">'+t+"</button>"}).join("");
+$("p0").innerHTML='<div id="o0"></div><h3>Tìm giá bán theo biên lãi mong muốn</h3><div class="g">'+I("tm","Biên lãi mong muốn",15,"%","Biên lợi nhuận = lãi chia giá bán")+'</div><p class="note" id="ro"></p>';
+$("p1").innerHTML='<div id="o1"></div>';
+var sc="",i,sp=[40500,45000,49500],so=[390,300,240];for(i=0;i<3;i++)sc+='<div class="card" id="sc'+i+'" style="margin:0"><h3 style="margin-top:0">Kịch bản '+(i+1)+' <span id="bs'+i+'" class="ok"></span></h3>'+I("sp"+i,"Giá bán",sp[i],"đ")+I("so"+i,"Số đơn / tháng",so[i],"đơn")+'<div id="sr'+i+'"></div></div>';
+$("p2").innerHTML='<p class="note">Nhập giá và số đơn dự kiến mỗi tháng cho từng kịch bản (giá thấp thường kéo thêm đơn).</p><div class="cards">'+sc+'</div><p class="note" id="sw"></p>';
+$("p3").innerHTML='<div class="g">'+I("fv","Lượt xem / tháng",20000,"")+I("fc","Thêm vào giỏ",6,"%")+I("fp","Giỏ hàng thành đơn",25,"%")+I("th1","Ngưỡng tham khảo: giỏ",5,"%","Ngưỡng do bạn tự đặt, thay bằng số liệu thực của shop")+I("th2","Ngưỡng tham khảo: đơn",20,"%")+'</div><div id="o3"></div>';
+$("p4").innerHTML='<div class="g">'+I("cs","Phí cố định Shopee",13,"%")+I("ct","Hoa hồng TikTok Shop",12.5,"%")+I("ca","Affiliate TikTok",0,"%")+I("co","Số đơn / tháng",300,"đơn")+'</div><div id="o4"></div>';
+document.addEventListener("input",function(e){var t=e.target;if(t.classList.contains("in")){if(FEE.indexOf(t.id)>-1&&pf<2){pf=2;pst()}render()}});
+document.addEventListener("change",function(e){var t=e.target,x;if(t.classList.contains("in")){x=pv(t.value);if(!isNaN(x))t.value=fmt(x);save()}});
+$("pf").onclick=function(e){var i=e.target.dataset.p,o;if(i==null)return;if(+i<2){o=PF[i][1];for(var k in o)$(k).value=fmt(o[k])}pf=+i;pst();render()};
+$("tabs").onclick=function(e){if(e.target.dataset.i!=null)show(+e.target.dataset.i)};
+$("tabs").onkeydown=function(e){var j=e.key=="ArrowRight"?1:e.key=="ArrowLeft"?-1:0;if(j){j=(cur+j+T.length)%T.length;show(j);$("t"+j).focus()}};
+$("rs").onclick=function(){document.querySelectorAll("input.in").forEach(function(e){e.value=fmt(e.dataset.d)});pf=0;pst();$("msg").textContent="Đã đặt lại về dữ liệu mẫu.";render()};
+$("cp").onclick=function(){var p=v("price"),c=calc(p),t="Giá bán "+n(p)+"đ | Lãi/đơn "+n(c.pr)+"đ | Biên "+pc(p?c.pr/p:0)+" | Đơn hòa vốn/tháng "+(c.pr>0?n(Math.ceil(v("fixed")/c.pr)):"không đạt")+" | CPA tối đa "+n(Math.max(0,c.m0))+"đ";
+try{navigator.clipboard.writeText(t).then(function(){$("msg").textContent="Đã sao chép kết quả."},function(){$("msg").textContent=t})}catch(x){$("msg").textContent=t}};
+load();pst();show(0);render();
+</script>
+</body>
+</html>
